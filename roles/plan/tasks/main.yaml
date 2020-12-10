@@ -1,0 +1,17 @@
+- name: Create parameters
+  template:
+    src: templates/azuredeploy.parameters.j2
+    dest: "azuredeploy.parameters.json"
+
+- name: Deploy ARM template
+  shell: 
+    az deployment group create \
+    --name AnsibleDeployment \
+    --resource-group {{ resourceGroup }} \
+    --template-uri "https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-web-app-github-deploy/azuredeploy.json" \
+    --parameters @azuredeploy.parameters.json
+  register: deploy
+
+- name: Output
+  debug:
+    msg: "{{ deploy.stdout }}"

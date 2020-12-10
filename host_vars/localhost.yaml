@@ -1,0 +1,8 @@
+arm:
+  siteLocation: "australiaeast"
+  production:
+    siteName: "prod-ae-web"
+    sku: "B1"
+  staging:
+    siteName: "stag-ae-web"
+    sku: "F1"
